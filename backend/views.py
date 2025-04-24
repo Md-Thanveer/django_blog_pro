@@ -12,7 +12,7 @@ def post_list(request):
         posts = Post.objects.filter(Q(title__icontains=query) | Q(tags__name__icontains=query)).distinct()
     else:
         posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'backend/post_list.html', {'posts': posts})
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
@@ -29,7 +29,7 @@ def post_detail(request, slug):
     else:
         c_form = CommentForm()
 
-    return render(request, 'blog/post_detail.html', {
+    return render(request, 'backend/post_detail.html', {
         'post': post,
         'comments': comments,
         'c_form': c_form
